@@ -1,0 +1,53 @@
+import random
+
+# Define the game logic function
+def game(comp, b):
+    # Check if it's a tie
+    if comp == b:
+        return "Tie"
+    
+    # Check other game outcomes
+    if comp == 's':
+        if b == 'w':
+            return False  # Snake drinks Water, you lose
+        elif b == 'g':
+            return True   # Gun shoots Snake, you win
+    elif comp == 'w':
+        if b == 's':
+            return False  # Water extinguishes Fire, you lose
+        elif b == 'g':
+            return True   # Gun floats on Water, you win
+    elif comp == 'g':
+        if b == 's':
+            return True   # Gun shoots Snake, you win
+        elif b == 'w':
+            return False  # Water extinguishes Fire, you lose
+
+# Generate a random choice for the computer
+randNo = random.randint(1, 3)
+print(randNo)
+
+# Map the random choice to 's', 'w', or 'g' for the computer
+if randNo == 1:
+    comp = 's'
+elif randNo == 2:
+    comp = 'w'
+elif randNo == 3:
+    comp = 'g'
+
+# Prompt the player for their choice
+print("Computer Turn: Snake(s) water(w) or gun(g)")
+b = input("Player's Turn: Snake(s) water(w) or gun(g)")
+
+# Calculate the game result
+result = game(comp, b)
+print(f"Computer chose {comp}")
+print(f"You chose {b}")
+
+# Display the game result
+if result == "Tie":
+    print("This game is a Tie")
+elif result:
+    print("You won")
+else:
+    print("You lose")
